@@ -22,8 +22,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-      - run: npm ci
+      # No package-lock.json is committed yet, so use `npm install`.
+      # Once you commit a lock file, you can switch this to `npm ci` and add `cache: npm` above.
+      - run: npm install
       - run: npm run build
         env:
           # Relative base ('./') is used by default and works under any repository name.
